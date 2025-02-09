@@ -4,7 +4,7 @@ from typing import Dict, Optional
 @dataclass
 class ModelConfig:
     model_name: str = "meta-llama/Llama-3.2-3B" 
-    embedding_model: str = "BAAI/bge-small-en"
+    embedding_model: str = "BAAI/bge-large-en-v1.5"
     max_tokens: int = 2048
     temperature: float = 0.7
 
