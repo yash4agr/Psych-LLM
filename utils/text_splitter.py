@@ -79,12 +79,16 @@ class TextChunker:
             # Check for page marker (assuming format like [PAGE 1] or similar)
             page_match = re.match(r'\[PAGE (\d+)\]', line)
             if page_match:
-                if current_page is not None:
+                if current_page is not None and current_page <= 645:
                     pages[current_page] = '\n'.join(current_text)
                 current_page = int(page_match.group(1))
                 current_text = []
+                
+                if current_page > 645:
+                    break
             else:
-                current_text.append(line)
+                if current_page is not None and current_page <= 645:
+                    current_text.append(line)
         
         # Don't forget to add the last page
         if current_page is not None:
