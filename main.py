@@ -11,7 +11,7 @@ def run_pipeline(pdf_path: Optional[str] = None) -> None:
     Run the RAG pipeline with the specified PDF or default path.
     
     Args:
-        pdf_path: Optional path to the PDF file. Defaults to 'Data/book.pdf'
+        pdf_path: Optional path to the PDF file. Defaults to 'data/book.pdf'
     """
     print("=== Psych-LLM ===")
     
@@ -32,9 +32,9 @@ def run_pipeline(pdf_path: Optional[str] = None) -> None:
     
     # Index document
     try:
-        pipeline.index_document(pdf_path or "Data/book.pdf")
+        pipeline.index_document(pdf_path or "data/book.pdf")
     except FileNotFoundError:
-        print(f"Error: PDF file not found at {pdf_path or 'Data/book.pdf'}")
+        print(f"Error: PDF file not found at {pdf_path or 'data/book.pdf'}")
         return
     
     # Interactive query loop
