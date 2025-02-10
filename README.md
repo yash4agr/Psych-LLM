@@ -60,7 +60,7 @@ pip install -r requirements.txt
 6. Export your Together API Key
 ```bash 
 export TOGETHER_API_KEY=<your_api_key>  # On macOS/Linux
-set TOGETHER_API_KEY=<your_api_key>  # On Windows
+$env:TOGETHER_API_KEY="<your_api_key>"  # On Windows (Powershell)
 ```
 
 7. Run the application
