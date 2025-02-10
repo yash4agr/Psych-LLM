@@ -32,20 +32,20 @@ Key Features:
 
 1. **Clone repository**
 ```bash
-git clone https://github.com/yourusername/psych-llm.git
+git clone https://github.com/yash4agr/Psych-LLM.git
 cd psych-llm
 ```
 2. Create a virtual environment
 ```bash
-python -m venv venv
+python -m venv .venv
 ```
 3. Activate the virtual environment
 ```bash 
 # On Windows:
-venv\Scripts\activate
+.venv\Scripts\activate
 
 # On macOS/Linux:
-source venv/bin/activate
+source .venv/bin/activate
 ```
 
 4. Install dependencies
