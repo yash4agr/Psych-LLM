@@ -4,7 +4,7 @@ from utils.pdf_parser import PDFParser
 from config import ModelConfig, VectorDBConfig
 from embeddings.embedder import Embedder
 from vector_store.chroma_store import VectorStore
-from llm.vllm_generator import ResponseGenerator
+from llm.llm_generator import ResponseGenerator
 from utils.text_splitter import TextChunker
 
 class RAGPipeline:

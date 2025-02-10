@@ -1,15 +1,12 @@
-from vllm import LLM, SamplingParams
+from together import Together
 from typing import List, Dict, Any
 from config import ModelConfig
 import os
 
 class ResponseGenerator:
     def __init__(self, config: ModelConfig):
-        self.llm = LLM(model=config.model_name, dtype = 'half', device="auto")
-        self.sampling_params = SamplingParams(
-            temperature=config.temperature,
-            max_tokens=config.max_tokens
-        )
+        self.client = Together()
+        self.model_name = config.model_name
     
     def generate_response(self, query: str, context: Dict[str, Any]) -> str:
         """
@@ -35,10 +32,13 @@ class ResponseGenerator:
             for doc, metadata in zip(documents, metadatas)
         ]
         
-        prompt = self._create_prompt(query, context_items)
+        messages = self._create_prompt(query, context_items)
         
-        response = self.llm.generate([prompt], self.sampling_params)
-        return response[0].outputs[0].text
+        response = self.client.chat.completions.create(
+            model=self.model_name,
+            messages=messages
+        )
+        return response.choices[0].message.content
 
     def _create_prompt(self, query: str, context: List[Dict]) -> str:
         """
@@ -56,7 +56,9 @@ class ResponseGenerator:
             for c in context
         ])
         
-        prompt = f"""You are a knowledgeable psychology assistant. Use the provided sources to answer the question.
+        messages =  [
+            {
+            "role": "system", "content": f"""You are a knowledgeable psychology assistant. Use the provided sources to answer the question.
 Context:
 {context_str}
 
@@ -68,9 +70,7 @@ Limit the response to 500 words.
 Do not include closing phrases like "Best regards" or "Let me know if I can help you further."
 Keep the response strictly relevant to the context.
 Task:
-Provide a clear, detailed, and well-structured answer to the following question, ensuring accuracy and relevance based on the context.
-
-Question: {query}
-
-Answer:"""
-        return prompt
+Provide a clear, detailed, and well-structured answer to the following question, ensuring accuracy and relevance based on the context."""},
+    {"role": "user", "content": f"""Question: {query}"""}
+]
+        return messages

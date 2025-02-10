@@ -1,11 +1,11 @@
 from dataclasses import dataclass
-from typing import Dict, Optional
+import os
 
 @dataclass
 class ModelConfig:
-    model_name: str = "meta-llama/Llama-3.2-3B" 
-    embedding_model: str = "BAAI/bge-large-en-v1.5"
-    max_tokens: int = 2048
+    model_name: str = "meta-llama/Llama-3.3-70B-Instruct-Turbo-Free" 
+    embedding_model: str = "togethercomputer/m2-bert-80M-2k-retrieval"
+    max_tokens: int = 512
     temperature: float = 0.7
 
 @dataclass
