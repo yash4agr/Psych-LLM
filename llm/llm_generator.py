@@ -1,7 +1,6 @@
 from together import Together
 from typing import List, Dict, Any
 from config import ModelConfig
-import os
 
 class ResponseGenerator:
     def __init__(self, config: ModelConfig):

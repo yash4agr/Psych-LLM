@@ -1,6 +1,4 @@
-import json
 from typing import Dict, List, Tuple
-import numpy as np
 import re
 from config import VectorDBConfig
 

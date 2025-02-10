@@ -1,5 +1,4 @@
 import pdfplumber
-from typing import Dict
 
 class PDFParser:
     def __init__(self):
